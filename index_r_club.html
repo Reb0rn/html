@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Интеллектуальный клуб "Вместе мы знание"</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0b0c10;
+            --card-bg: #1f2833;
+            --accent-neon: #66fcf1;
+            --accent-purple: #45f3ff; /* Альтернативный яркий акцент */
+            --text-main: #c5c6c7;
+            --text-light: #ffffff;
+            --gradient-btn: linear-gradient(135deg, #00f2fe 0%, #4facfe 100%);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: 'Open Sans', sans-serif;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 800;
+            color: var(--text-light);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* --- Header / Navbar --- */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(11, 12, 16, 0.85);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(102, 252, 241, 0.1);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--text-light);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .logo span {
+            color: var(--accent-neon);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 25px;
+        }
+
+        .nav-links a {
+            color: var(--text-main);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s;
+            font-size: 0.95rem;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-neon);
+        }
+
+        /* --- Hero Section --- */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: radial-gradient(circle at center, #1a1c23 0%, var(--bg-color) 100%);
+            position: relative;
+            padding-top: 80px;
+            text-align: center;
+        }
+
+        /* Эффект легкого свечения на фоне */
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 20%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 300px;
+            height: 300px;
+            background: var(--accent-neon);
+            border-radius: 50%;
+            filter: blur(150px);
+            opacity: 0.15;
+            pointer-events: none;
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            line-height: 1.2;
+        }
+
+        .hero-content h1 span {
+            color: var(--accent-neon);
+            text-shadow: 0 0 20px rgba(102, 252, 241, 0.4);
+        }
+
+        .hero-content p {
+            font-size: 1.3rem;
+            max-width: 700px;
+            margin: 0 auto 40px;
+            color: #959da5;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 15px 35px;
+            background: var(--gradient-btn);
+            color: #000;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 800;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            border-radius: 50px;
+            text-decoration: none;
+            box-shadow: 0 0 20px rgba(0, 242, 254, 0.4);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 0 30px rgba(0, 242, 254, 0.7);
+        }
+
+        /* --- Global Section Style --- */
+        section {
+            padding: 100px 0;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 60px;
+            text-transform: uppercase;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 4px;
+            background: var(--accent-neon);
+            margin: 15px auto 0;
+            border-radius: 2px;
+        }
+
+        /* --- About Section (Для новичков) --- */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .about-text p {
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+        }
+
+        .about-highlight {
+            border-left: 4px solid var(--accent-neon);
+            padding-left: 20px;
+            font-style: italic;
+            color: var(--text-light);
+        }
+
+        /* --- Why Us Section (Причины прийти) --- */
+        .reasons {
+            background-color: #12141c;
+        }
+
+        .reasons-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .reason-card {
+            background-color: var(--card-bg);
+            padding: 40px 30px;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: transform 0.3s, border-color 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .reason-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(135deg, rgba(102, 252, 241, 0.1) 0%, transparent 100%);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .reason-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(102, 252, 241, 0.3);
+        }
+
+        .reason-card:hover::before {
+            opacity: 1;
+        }
+
+        .reason-num {
+            font-size: 3rem;
+            font-family: 'Montserrat', sans-serif;
+            color: rgba(102, 252, 241, 0.2);
+            font-weight: 800;
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            line-height: 1;
+        }
+
+        .reason-card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .reason-card p {
+            position: relative;
+            z-index: 1;
+            font-size: 0.95rem;
+        }
+
+        /* --- Quiz Examples (Примеры заданий) --- */
+        .examples-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 40px;
+        }
+
+        .tab-btn {
+            background: transparent;
+            border: 2px solid rgba(102, 252, 241, 0.3);
+            color: var(--text-light);
+            padding: 10px 25px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .tab-btn.active, .tab-btn:hover {
+            background: var(--accent-neon);
+            border-color: var(--accent-neon);
+            color: #000;
+            box-shadow: 0 0 15px rgba(102, 252, 241, 0.4);
+        }
+
+        .example-display {
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            padding: 40px;
+            text-align: center;
+            min-height: 250px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .example-question {
+            font-size: 1.4rem;
+            color: var(--text-light);
+            margin-bottom: 25px;
+            max-width: 800px;
+        }
+
+        .btn-answer {
+            background: transparent;
+            border: 1px dashed var(--accent-neon);
+            color: var(--accent-neon);
+            padding: 8px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .btn-answer:hover {
+            background: rgba(102, 252, 241, 0.1);
+        }
+
+        .example-answer {
+            margin-top: 15px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #45f3ff;
+            display: none;
+        }
+
+        /* --- Team / Leader Section --- */
+        .leader {
+            background-color: #12141c;
+        }
+
+        .leader-block {
+            display: flex;
+            align-items: center;
+            gap: 60px;
+            background: var(--card-bg);
+            padding: 50px;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .leader-img-wrapper {
+            position: relative;
+            flex-shrink: 0;
+        }
+
+        /* Рамка-эффект вокруг фото лидера */
+        .leader-img-wrapper::before {
+            content: '';
+            position: absolute;
+            top: -10px; left: -10px; right: -10px; bottom: -10px;
+            border: 2px solid var(--accent-neon);
+            border-radius: 15px;
+            z-index: 0;
+            opacity: 0.5;
+            transition: transform 0.3s;
+        }
+
+        .leader-block:hover .leader-img-wrapper::before {
+            transform: scale(1.03);
+        }
+
+        .leader-img {
+            width: 300px;
+            height: 350px;
+            object-fit: cover;
+            border-radius: 10px;
+            position: relative;
+            z-index: 1;
+            display: block;
+            background-color: #2c3540; /* Заглушка, если нет фото */
+        }
+
+        .leader-info h3 {
+            font-size: 1.8rem;
+            margin-bottom: 5px;
+            color: var(--text-light);
+        }
+
+        .leader-title {
+            color: var(--accent-neon);
+            font-weight: 600;
+            margin-bottom: 20px;
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .leader-bio {
+            font-size: 1.05rem;
+            margin-bottom: 15px;
+        }
+
+        /* --- Media / Photo Reports --- */
+        .photo-gallery {
+            text-align: center;
+        }
+
+        .gallery-text {
+            max-width: 650px;
+            margin: 0 auto 40px;
+            font-size: 1.1rem;
+        }
+
+        /* --- Footer & Contacts --- */
+        footer {
+            background-color: #07080a;
+            padding: 60px 0 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .footer-grid {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .footer-contacts h4 {
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            color: var(--text-light);
+        }
+
+        .contact-links {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .contact-btn {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 25px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-family: 'Montserrat', sans-serif;
+            transition: all 0.3s;
+        }
+
+        .btn-tg {
+            background-color: #0088cc;
+            color: #fff;
+        }
+        .btn-tg:hover { background-color: #0077b3; transform: translateY(-2px); }
+
+        .btn-mail {
+            background-color: #e0e0e0;
+            color: #333;
+        }
+        .btn-mail:hover { background-color: #fff; transform: translateY(-2px); }
+
+        .copyright {
+            text-align: center;
+            font-size: 0.85rem;
+            color: #555;
+            border-top: 1px solid rgba(255, 255, 255, 0.02);
+            padding-top: 20px;
+        }
+
+        /* --- Responsive Design --- */
+        @media (max-width: 900px) {
+            .about-grid, .leader-block {
+                grid-template-columns: 1fr;
+                flex-direction: column;
+                text-align: center;
+            }
+            .about-grid { gap: 30px; }
+            .leader-block { padding: 30px; }
+            .leader-img-wrapper { margin: 0 auto; }
+            .hero-content h1 { font-size: 2.5rem; }
+            .footer-grid { flex-direction: column; text-align: center; }
+            .contact-links { justify-content: center; }
+            .nav-links { display: none; } /* Для полноценного продакшена тут обычно мобильное меню бургера */
+        }
+    </style>
+</head>
+<body>
+
+    <!-- НАВИГАЦИЯ -->
+    <header>
+        <div class="nav-container">
+            <div class="logo">Вместе мы <span>знание</span></div>
+            <ul class="nav-links">
+                <li><a href="#about">О клубе</a></li>
+                <li><a href="#reasons">Почему мы?</a></li>
+                <li><a href="#examples">Примеры заданий</a></li>
+                <li><a href="#leader">Организатор</a></li>
+                <li><a href="#contacts">Контакты</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <!-- ГЛАВНЫЙ ЭКРАН -->
+    <section class="hero">
+        <div class="container hero-content">
+            <h1>Вместе мы <span>знание</span></h1>
+            <p>Интеллектуально-развлекательный квиз-клуб для тех, кто любит разминать мозги в кругу крутых людей, вкусно отдыхать и побеждать!</p>
+            <a href="#about" class="btn">Узнать больше</a>
+        </div>
+    </section>
+
+    <!-- О КЛУБЕ (Для новичков) -->
+    <section id="about" class="container">
+        <h2 class="section-title">Что такое наш Клуб?</h2>
+        <div class="about-grid">
+            <div class="about-text">
+                <p>Если вы ни разу не были на Мозгобойне или подобных квизах — не переживайте. Наш клуб создан для того, чтобы круто проводить вечера будней.</p>
+                <p><strong>«Вместе мы знание»</strong> — это командная игра, состоящая из нескольких увлекательных туров. Вопросы охватывают всё на свете: от мировых трендов, музыки и кино до забавных исторических фактов и логических загадок.</p>
+                <p class="about-highlight">Вам не нужно быть магистром «Что? Где? Когда?». Логика, чувство юмора и командный дух — вот ваше главное оружие.</p>
+            </div>
+            <div class="about-text">
+                <p><strong>Как все проходит?</strong> Вы приходите с друзьями (или мы найдем вам команду прямо на месте), заказываете любимые напитки в баре, слушаете классную музыку и отвечаете на вопросы с помощью бланков.</p>
+                <p>Два часа пролетают как один миг, а заряд эмоций и новые знакомства остаются на всю неделю!</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ПРИЧИНЫ ПРИЙТИ -->
+    <section id="reasons" class="reasons">
+        <div class="container">
+            <h2 class="section-title">4 причины войти в клуб</h2>
+            <div class="reasons-grid">
+                <div class="reason-card">
+                    <div class="reason-num">01</div>
+                    <h3>Перезагрузка после работы</h3>
+                    <p>Идеальный способ легально отвлечься от рутины, дедлайнов и рабочих задач, переключив мозг на чистый азарт.</p>
+                </div>
+                <div class="reason-card">
+                    <div class="reason-num">02</div>
+                    <h3>Новые знакомства</h3>
+                    <p>Клуб объединяет классных, открытых и разносторонних людей. Здесь легко найти единомышленников или надежных друзей.</p>
+                </div>
+                <div class="reason-card">
+                    <div class="reason-num">03</div>
+                    <h3>Прокачка эрудиции</h3>
+                    <p>Вы удивитесь, сколько скрытых знаний и неожиданных фактов хранит ваша память. И это потрясающий повод ими блеснуть!</p>
+                </div>
+                <div class="reason-card">
+                    <div class="reason-num">04</div>
+                    <h3>Крутые призы и фото</h3>
+                    <p>Победители получают фирменные трофеи, а каждый участник — профессиональные стильные фотографии с игры для своих соцсетей.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ПРИМЕРЫ ЗАДАНИЙ -->
+    <section id="examples" class="container">
+        <h2 class="section-title">Примеры наших заданий</h2>
+        <p style="text-align: center; margin-bottom: 30px; font-size: 1.1rem;">Попробуйте свои силы прямо сейчас! Выберите тип вопроса:</p>
+        
+        <div class="examples-tabs">
+            <button class="tab-btn active" onclick="switchExample(0, this)">Логика</button>
+            <button class="tab-btn" onclick="switchExample(1, this)">Кино/Музыка</button>
+            <button class="tab-btn" onclick="switchExample(2, this)">Правда или ложь</button>
+        </div>
+
+        <div class="example-display">
+            <div id="example-text" class="example-question">
+                В 19 веке в Англии этот предмет заменял будильник: специальный человек ходил по улицам и стучал им в окна рабочих. Что это за предмет?
+            </div>
+            <button class="btn-answer" onclick="toggleAnswer()">Показать ответ</button>
+            <div id="example-answer" class="example-answer">Длинная бамбуковая палка (или трубка для плевания горохом)</div>
+        </div>
+    </section>
+
+    <!-- ЛИДЕР КЛУБА -->
+    <section id="leader" class="leader">
+        <div class="container">
+            <h2 class="section-title">Кто за этим стоит?</h2>
+            <div class="leader-block">
+                <div class="leader-img-wrapper">
+                    <!-- Замените 'leader.jpg' на реальный путь к вашему фото -->
+                    <img src="leader.jpg" alt="Лидер Клуба" class="leader-img" onerror="this.src='https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=300&h=350'">
+                </div>
+                <div class="leader-info">
+                    <h3>Алексей Иванов</h3>
+                    <div class="leader-title">Основатель и ведущий клуба</div>
+                    <p class="leader-bio">«Привет! Я искренне верю, что самые крутые идеи и крепкие союзы рождаются там, где людям интересно вместе. Наш клуб — это не просто игра на баллы, это живое комьюнити.»</p>
+                    <p class="leader-bio">Я лично разрабатываю механику туров и калибрую вопросы так, чтобы каждый участник — от новичка до опытного игрока — уходил с улыбкой и чувством: "Вау, а мы ведь действительно сила!" До встречи на играх!»</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ФОТООТЧЕТЫ И ССЫЛКИ -->
+    <section id="gallery" class="container photo-gallery">
+        <h2 class="section-title">Атмосфера наших игр</h2>
+        <p class="gallery-text">Каждая наша игра — это море эмоций, смеха и победных криков. Мы сохраняем эти моменты для вас.</p>
+        <!-- Ссылка на облако или галерею с фото -->
+        <a href="https://disk.yandex.ru" target="_blank" class="btn">Смотреть фотоотчеты</a>
+    </section>
+
+    <!-- ПОДВАЛ И КОНТАКТЫ -->
+    <footer id="contacts">
+        <div class="container footer-grid">
+            <div class="footer-info">
+                <div class="logo" style="margin-bottom: 10px;">Вместе мы <span>знание</span></div>
+                <p>Присоединяйтесь к нашей интеллектуальной банде!</p>
+            </div>
+            <div class="footer-contacts">
+                <h4>Мы на связи:</h4>
+                <div class="contact-links">
+                    <!-- Ссылка на Telegram-канал -->
+                    <a href="https://t.me/your_channel" target="_blank" class="contact-btn btn-tg">
+                        Telegram Канал
+                    </a>
+                    <!-- Ссылка на почту -->
+                    <a href="mailto:club@knowledge.com" class="contact-btn btn-mail">
+                        club@knowledge.com
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="copyright">
+            &copy; 2026 Клуб "Вместе мы знание". Все права защищены.
+        </div>
+    </footer>
+
+    <!-- Скрипт для интерактивности вопросов (Табы) -->
+    <script>
+        const questions = [
+            {
+                q: "В 19 веке в Англии этот предмет заменял будильник: специальный человек ходил по улицам и стучал им в окна рабочих. Что это за предмет?",
+                a: "Длинная бамбуковая палка (или трубка для плевания горохом)"
+            },
+            {
+                q: "Какой известный голливудский актер в юности подрабатывал зазывалой в костюме гигантского цыпленка в сети ресторанов El Pollo Loco?",
+                a: "Брэд Питт"
+            },
+            {
+                q: "Правда ли, что бамбук может вырастать на 90 и более сантиметров всего за одни сутки?",
+                a: "Прада! Некоторые виды бамбука действительно растут со скоростью до 2-3 см в час."
+            }
+        ];
+
+        let currentActiveTab = 0;
+
+        function switchExample(index, element) {
+            // Меняем активный класс у кнопок
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+            element.classList.add('active');
+            
+            currentActiveTab = index;
+            
+            // Обновляем текст вопроса и прячем ответ
+            document.getElementById('example-text').innerText = questions[index].q;
+            const answerDiv = document.getElementById('example-answer');
+            answerDiv.innerText = questions[index].a;
+            answerDiv.style.display = 'none';
+        }
+
+        function toggleAnswer() {
+            const answerDiv = document.getElementById('example-answer');
+            if (answerDiv.style.display === 'none' || answerDiv.style.display === '') {
+                answerDiv.style.display = 'block';
+            } else {
+                answerDiv.style.display = 'none';
+            }
+        }
+    </script>
+</body>
+</html>
